@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>the aadatsh Grocery Store</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+background:#0b1020;
+color:white;
+overflow-x:hidden;
+}
+
+/* NAVBAR */
+
+nav{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+padding:18px 6%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+backdrop-filter:blur(15px);
+background:rgba(0,0,0,0.4);
+z-index:999;
+}
+
+.logo{
+font-size:30px;
+font-weight:700;
+color:#00d4ff;
+text-transform:capitalize;
+}
+
+nav ul{
+display:flex;
+gap:20px;
+list-style:none;
+}
+
+nav ul li a{
+text-decoration:none;
+color:white;
+font-weight:500;
+transition:0.3s;
+}
+
+nav ul li a:hover{
+color:#00d4ff;
+}
+
+/* HERO */
+
+.hero{
+min-height:100vh;
+background:
+linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.7)),
+url('https://i.ibb.co/jkj093Jb/2c9674b1366a3539f18077edd2db8c1a.jpg');
+background-size:cover;
+background-position:center;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:100px 20px;
+}
+
+.hero-content{
+max-width:850px;
+animation:fade 1.2s ease;
+}
+
+.hero h1{
+font-size:70px;
+margin-bottom:20px;
+text-shadow:0 0 20px rgba(255,255,255,0.4);
+}
+
+.hero p{
+font-size:22px;
+color:#ddd;
+margin-bottom:30px;
+}
+
+.hero-btn{
+padding:16px 35px;
+border:none;
+border-radius:40px;
+font-size:18px;
+cursor:pointer;
+background:linear-gradient(45deg,#00d4ff,#0066ff);
+color:white;
+transition:0.4s;
+box-shadow:0 10px 30px rgba(0,212,255,0.4);
+}
+
+.hero-btn:hover{
+transform:translateY(-5px) scale(1.05);
+}
+
+/* SECTION */
+
+.section{
+padding:90px 6%;
+}
+
+.section-title{
+text-align:center;
+margin-bottom:50px;
+}
+
+.section-title h2{
+font-size:45px;
+margin-bottom:10px;
+}
+
+.section-title p{
+color:#bbb;
+}
+
+/* SEARCH */
+
+.search-box{
+max-width:500px;
+margin:0 auto 40px;
+display:flex;
+gap:10px;
+}
+
+.search-box input{
+width:100%;
+padding:16px;
+border:none;
+border-radius:15px;
+background:#111827;
+color:white;
+font-size:16px;
+outline:none;
+}
+
+/* PRODUCTS */
+
+.products{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:30px;
+}
+
+.card{
+background:rgba(255,255,255,0.06);
+border-radius:30px;
+overflow:hidden;
+backdrop-filter:blur(15px);
+transition:0.5s;
+transform-style:preserve-3d;
+box-shadow:0 10px 35px rgba(0,0,0,0.4);
+}
+
+.card:hover{
+transform:
+rotateY(8deg)
+rotateX(6deg)
+translateY(-10px)
+scale(1.03);
+}
+
+.card img{
+width:100%;
+height:240px;
+object-fit:cover;
+}
+
+.card-content{
+padding:22px;
+}
+
+.card-content h3{
+font-size:24px;
+margin-bottom:10px;
+}
+
+.card-content p{
+color:#ccc;
+margin-bottom:15px;
+}
+
+.price{
+font-size:24px;
+font-weight:700;
+color:#00d4ff;
+margin-bottom:15px;
+}
+
+.card-buttons{
+display:flex;
+gap:10px;
+}
+
+.card-buttons button{
+flex:1;
+padding:12px;
+border:none;
+border-radius:12px;
+cursor:pointer;
+font-weight:600;
+transition:0.3s;
+}
+
+.add-btn{
+background:#00d4ff;
+color:white;
+}
+
+.buy-btn{
+background:#ff4d6d;
+color:white;
+}
+
+.card-buttons button:hover{
+transform:scale(1.05);
+}
+
+/* CART */
+
+.cart-box{
+max-width:800px;
+margin:auto;
+background:rgba(255,255,255,0.05);
+padding:35px;
+border-radius:25px;
+backdrop-filter:blur(15px);
+box-shadow:0 10px 35px rgba(0,0,0,0.4);
+}
+
+.cart-box h3{
+margin-bottom:20px;
+font-size:30px;
+}
+
+.cart-items{
+margin-bottom:20px;
+line-height:2;
+}
+
+.total{
+font-size:26px;
+font-weight:700;
+color:#00d4ff;
+margin-bottom:20px;
+}
+
+/* FORM */
+
+.input-box{
+margin-bottom:20px;
+}
+
+.input-box input,
+.input-box textarea{
+width:100%;
+padding:16px;
+border:none;
+border-radius:15px;
+background:#111827;
+color:white;
+outline:none;
+font-size:16px;
+}
+
+textarea{
+height:120px;
+resize:none;
+}
+
+.order-btn{
+width:100%;
+padding:16px;
+border:none;
+border-radius:15px;
+background:linear-gradient(45deg,#ff4d6d,#ff0066);
+color:white;
+font-size:18px;
+cursor:pointer;
+transition:0.3s;
+}
+
+.order-btn:hover{
+transform:scale(1.02);
+}
+
+/* ABOUT */
+
+.about{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:40px;
+align-items:center;
+}
+
+.about img{
+width:100%;
+border-radius:25px;
+}
+
+.about-text h3{
+font-size:40px;
+margin-bottom:20px;
+}
+
+.about-text p{
+line-height:1.8;
+color:#ccc;
+}
+
+/* CONTACT */
+
+.contact-box{
+max-width:700px;
+margin:auto;
+text-align:center;
+background:rgba(255,255,255,0.05);
+padding:40px;
+border-radius:25px;
+}
+
+.contact-box h3{
+font-size:35px;
+margin-bottom:15px;
+}
+
+.contact-box p{
+margin-bottom:12px;
+color:#ccc;
+}
+
+/* WHATSAPP */
+
+.whatsapp{
+position:fixed;
+bottom:25px;
+right:25px;
+width:65px;
+height:65px;
+border-radius:50%;
+background:#25D366;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:32px;
+text-decoration:none;
+color:white;
+z-index:999;
+box-shadow:0 10px 30px rgba(0,0,0,0.4);
+animation:float 2s infinite;
+}
+
+/* FOOTER */
+
+footer{
+text-align:center;
+padding:25px;
+color:#aaa;
+}
+
+/* ANIMATIONS */
+
+@keyframes fade{
+from{
+opacity:0;
+transform:translateY(30px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+@keyframes float{
+0%{
+transform:translateY(0);
+}
+50%{
+transform:translateY(-8px);
+}
+100%{
+transform:translateY(0);
+}
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+.hero h1{
+font-size:42px;
+}
+
+.hero p{
+font-size:18px;
+}
+
+.section-title h2{
+font-size:34px;
+}
+
+.about{
+grid-template-columns:1fr;
+}
+
+nav{
+flex-direction:column;
+gap:15px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav>
+
+<div class="logo">the aadatsh</div>
+
+<ul>
+<li><a href="#home">Home</a></li>
+<li><a href="#shop">Shop</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+
+</nav>
+
+<!-- HERO -->
+
+<section class="hero" id="home">
+
+<div class="hero-content">
+
+<h1>Fresh Grocery For Your Society</h1>
+
+<p>Fresh Finds, Best Prices</p>
+
+<button class="hero-btn"
+onclick="document.getElementById('shop').scrollIntoView()">
+Shop Now
+</button>
+
+</div>
+
+</section>
+
+<!-- SHOP -->
+
+<section class="section" id="shop">
+
+<div class="section-title">
+<h2>Our Products</h2>
+<p>Search and order instantly</p>
+</div>
+
+<!-- SEARCH -->
+
+<div class="search-box">
+<input type="text" id="searchInput"
+placeholder="Search products..."
+onkeyup="searchProducts()">
+</div>
+
+<!-- PRODUCTS -->
+
+<div class="products" id="productContainer">
+
+<!-- PRODUCT -->
+
+<div class="card product-card">
+
+<img src="https://i.ibb.co/jkj093Jb/2c9674b1366a3539f18077edd2db8c1a.jpg">
+
+<div class="card-content">
+
+<h3 class="product-name">Fresh Grocery Pack</h3>
+
+<p>good product</p>
+
+<div class="price">₹299</div>
+
+<div class="card-buttons">
+
+<button class="add-btn"
+onclick="addToCart('Fresh Grocery Pack',299)">
+Add Cart
+</button>
+
+<button class="buy-btn">
+Buy Now
+</button>
+
+</div>
+
+</div>
+</div>
+
+<!-- PRODUCT -->
+
+<div class="card product-card">
+
+<img src="https://i.ibb.co/RGQ6KTxq/file-0000000050f872089192da1aa99726e5.png">
+
+<div class="card-content">
+
+<h3 class="product-name">Snack Combo</h3>
+
+<p>nice one</p>
+
+<div class="price">₹199</div>
+
+<div class="card-buttons">
+
+<button class="add-btn"
+onclick="addToCart('Snack Combo',199)">
+Add Cart
+</button>
+
+<button class="buy-btn">
+Buy Now
+</button>
+
+</div>
+
+</div>
+</div>
+
+<!-- PRODUCT -->
+
+<div class="card product-card">
+
+<img src="https://i.ibb.co/4Z8c5Hx1/ryomen-sukuna-anime-style-glowing-red-eye-villain-4k-mobile-wallpaper-444907.jpg">
+
+<div class="card-content">
+
+<h3 class="product-name">Special Product</h3>
+
+<p>my fav</p>
+
+<div class="price">₹499</div>
+
+<div class="card-buttons">
+
+<button class="add-btn"
+onclick="addToCart('Special Product',499)">
+Add Cart
+</button>
+
+<button class="buy-btn">
+Buy Now
+</button>
+
+</div>
+
+</div>
+</div>
+
+</div>
+
+</section>
+
+<!-- CART -->
+
+<section class="section">
+
+<div class="cart-box">
+
+<h3>Your Cart 🛒</h3>
+
+<div class="cart-items" id="cartItems">
+No items added
+</div>
+
+<div class="total" id="total">
+Total: ₹0
+</div>
+
+<div class="input-box">
+<input type="text" id="customerName"
+placeholder="Customer Name">
+</div>
+
+<div class="input-box">
+<input type="text" id="customerPhone"
+placeholder="Phone Number">
+</div>
+
+<div class="input-box">
+<textarea id="address"
+placeholder="Address"></textarea>
+</div>
+
+<button class="order-btn"
+onclick="placeOrder()">
+Place Order
+</button>
+
+</div>
+
+</section>
+
+<!-- ABOUT -->
+
+<section class="section" id="about">
+
+<div class="about">
+
+<img src="https://i.ibb.co/jkj093Jb/2c9674b1366a3539f18077edd2db8c1a.jpg">
+
+<div class="about-text">
+
+<h3>About Our Store</h3>
+
+<p>
+the aadatsh is a modern grocery store made for society residents.
+We provide smooth delivery, fresh groceries, affordable prices,
+and a premium online shopping experience.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- CONTACT -->
+
+<section class="section" id="contact">
+
+<div class="contact-box">
+
+<h3>Contact Us</h3>
+
+<p>Email: aaadrsh1001012@gmail.com</p>
+
+<p>Phone: 9217195420</p>
+
+<p>Available 24/7 for society orders</p>
+
+</div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+© 2026 the aadatsh Grocery Store
+</footer>
+
+<!-- WHATSAPP -->
+
+<a class="whatsapp"
+href="https://wa.me/9217195420"
+target="_blank">
+💬
+</a>
+
+<script>
+
+/* CART */
+
+let cart = [];
+let total = 0;
+
+function addToCart(name,price){
+
+cart.push({
+name:name,
+price:price
+});
+
+total += price;
+
+updateCart();
+
+}
+
+function updateCart(){
+
+const cartItems = document.getElementById("cartItems");
+
+if(cart.length === 0){
+cartItems.innerHTML = "No items added";
+return;
+}
+
+cartItems.innerHTML = "";
+
+cart.forEach((item,index)=>{
+
+cartItems.innerHTML += `
+<div>
+${index+1}. ${item.name} - ₹${item.price}
+</div>
+`;
+
+});
+
+document.getElementById("total").innerHTML =
+"Total: ₹" + total;
+
+}
+
+/* ORDER */
+
+function placeOrder(){
+
+let name =
+document.getElementById("customerName").value;
+
+let phone =
+document.getElementById("customerPhone").value;
+
+let address =
+document.getElementById("address").value;
+
+if(name === "" || phone === ""){
+alert("Please fill all details");
+return;
+}
+
+let productList = "";
+
+cart.forEach(item=>{
+productList += item.name + " - ₹" + item.price + "%0D%0A";
+});
+
+let mail =
+"mailto:aaadrsh1001012@gmail.com"
++ "?subject=New Grocery Order"
++ "&body="
++ "Customer Name: " + name
++ "%0D%0APhone: " + phone
++ "%0D%0AAddress: " + address
++ "%0D%0A%0D%0AProducts:%0D%0A"
++ productList
++ "%0D%0ATotal: ₹" + total;
+
+window.location.href = mail;
+
+}
+
+/* SEARCH */
+
+function searchProducts(){
+
+let input =
+document.getElementById("searchInput")
+.value.toLowerCase();
+
+let cards =
+document.querySelectorAll(".product-card");
+
+cards.forEach(card=>{
+
+let title =
+card.querySelector(".product-name")
+.innerText.toLowerCase();
+
+if(title.includes(input)){
+card.style.display = "block";
+}else{
+card.style.display = "none";
+}
+
+});
+
+}
+
+</script>
+
+</body>
+</html>
